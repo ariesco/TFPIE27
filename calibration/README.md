@@ -57,13 +57,18 @@ timeout and a maximum number of attempts.
 
 ## Loading it
 
-The first line is `load ../json/json.maude`. Maude resolves that path
-relative to `pubsub.maude`, so the JSON module has to be at `json/json.maude`
-in the root of this repository. Then:
+`pubsub.maude` loads `json.maude`, which loads `value.maude`, which loads
+`date.maude`; all four are in this folder, and Maude resolves each `load`
+relative to the file that contains it, so it works from any directory:
 
 ```
 maude calibration/pubsub.maude
 ```
+
+The file ends with `rew init .`, which delivers the four example messages
+from two publishers, through one topic and two subscriptions, to three
+subscribers with different filters. It loads without warnings and the
+rewrite terminates in Maude 3.5.
 
 ## Why publish-subscribe is not on the menu
 
