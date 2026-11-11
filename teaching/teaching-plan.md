@@ -21,13 +21,13 @@ The statements of the three practicals are in [`practicals/`](../practicals/).
 
 | Week | Dates | Lecture (Monday) | Laboratory (Thursday) |
 |---|---|---|---|
-| 1 | 26 and 29 Oct | Maude basics: functional modules, sorts, operators, equations | Practical 1 (ungraded): binary search tree |
-| 2 | 2 and 5 Nov | **Project kickoff**: statement and menu of candidate systems, so that students think about a choice while doing the practicals. System modules and rewrite rules | Practical 2 (ungraded): modify the rules of a given specification, not write them from scratch |
-| 3 | 9 and 12 Nov | `search` and state-space exploration | Practical 3 (ungraded): triangular peg solitaire solved with `search` |
-| 4 | 16 and 19 Nov | **Monday: deadline** to form teams and choose a system, subject to approval. LTL and the model checker | Project work begins: sorts, operators, first equations and rules |
-| 5 | 23 and 26 Nov | Worked examples: a ring protocol and a peer-to-peer protocol | Project work: base specification and the properties (part 3) |
-| 6 | 30 Nov and 3 Dec | Equational abstraction: when a rule can become an equation, and what that does to the state space | Project work: verification with `search` and the LTL model checker |
-| 7 | 7 and 10 Dec | Semantics of programming languages | Last working session: mutations (part 5), re-verification, report. **Submission: Friday 11, 23:59** |
+| 1 | 26 and 29 Oct | Maude basics: functional modules, sorts, operators, equations. Data structures: natural numbers, stacks, lists, sorted lists, and multisets | Practical 1 (ungraded): binary search tree |
+| 2 | 2 and 5 Nov | **Project kickoff**: statement and menu of candidate systems, so that students think about a choice while doing the practicals. System modules, rewrite rules, and `search`, with logic puzzles such as the wolf, the goat, and the cabbage | Practical 2 (ungraded): modify the rules of a given specification, not write them from scratch |
+| 3 | 9 and 12 Nov | LTL and the model checker | Practical 3 (ungraded): triangular peg solitaire solved with `search` |
+| 4 | 16 and 19 Nov | **Monday: deadline** to form teams and choose a system, subject to approval. Worked examples: a ring protocol and a peer-to-peer protocol | Project work begins: sorts, operators, first equations and rules |
+| 5 | 23 and 26 Nov | Equational abstraction: when a rule can become an equation, and what that does to the state space | Project work: base specification and the properties (part 3) |
+| 6 | 30 Nov and 3 Dec | Semantics of programming languages | Project work: verification with `search` and the LTL model checker |
+| 7 | 7 and 10 Dec | **Project review** with the students: each team's questions before submission | Last working session: mutations (part 5), re-verification, report. **Submission: Friday 11, 23:59** |
 | 8 | 14 and 17 Dec | **Defenses**, first round | **Defenses**, second round. End-of-term survey |
 
 ## Supervision without milestones
