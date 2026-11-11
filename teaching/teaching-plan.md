@@ -25,9 +25,9 @@ The statements of the three practicals are in [`practicals/`](../practicals/).
 | 2 | 2 and 5 Nov | **Project kickoff**: statement and menu of candidate systems, so that students think about a choice while doing the practicals. System modules and rewrite rules | Practical 2 (ungraded): modify the rules of a given specification, not write them from scratch |
 | 3 | 9 and 12 Nov | `search` and state-space exploration | Practical 3 (ungraded): triangular peg solitaire solved with `search` |
 | 4 | 16 and 19 Nov | **Monday: deadline** to form teams and choose a system, subject to approval. LTL and the model checker | Project work begins: sorts, operators, first equations and rules |
-| 5 | 23 and 26 Nov | Equational abstraction: when a rule can become an equation, and what that does to the state space | Project work: base specification and the properties (part 3) |
-| 6 | 30 Nov and 3 Dec | Questions and the most common mistakes seen in the laboratory | Project work: verification with `search` and the LTL model checker |
-| 7 | 7 and 10 Dec | Wrap-up | Last working session: mutations (part 5), re-verification, report. **Submission: Friday 11, 23:59** |
+| 5 | 23 and 26 Nov | Worked examples: a ring protocol and a peer-to-peer protocol | Project work: base specification and the properties (part 3) |
+| 6 | 30 Nov and 3 Dec | Equational abstraction: when a rule can become an equation, and what that does to the state space | Project work: verification with `search` and the LTL model checker |
+| 7 | 7 and 10 Dec | Semantics of programming languages | Last working session: mutations (part 5), re-verification, report. **Submission: Friday 11, 23:59** |
 | 8 | 14 and 17 Dec | **Defenses**, first round | **Defenses**, second round. End-of-term survey |
 
 ## Supervision without milestones
