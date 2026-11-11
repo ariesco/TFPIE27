@@ -1,53 +1,77 @@
-# Modeling real systems in Maude: course materials
+# Calibration model: publish-subscribe
 
-Materials for the project-based assessment described in
+`pubsub.maude` is the model we wrote before setting the assignment, to see
+what a team's work would actually look like. It is published as an example
+of a specification that would **not** earn top marks under the rubric, and
+of why.
 
-> Adrián Riesco and Juan Rodríguez-Hortalá. *Modeling Real Systems in Maude:
-> Making the Declarative Decisions the Assignment.* TFPIE 2027.
+It is unfinished and is published as it was, including the `TODO` before
+`eof` and the notes after it. Only the comments and those notes have been
+translated from Spanish; the code is untouched.
 
-In *Auditoría, Calidad y Fiabilidad Informáticas* (master's level,
-Universidad Complutense de Madrid), teams of two or three students choose a
-real architecture, specify it in Maude, state and verify properties of it,
-mutate their own specification to break those properties, and defend the
-result individually. Nothing is given: designing the algebra and deciding what
-belongs in the equational layer and what in the rule layer are the
-assignment.
+## What it does
 
-16 students, an eight-week block, two 100-minute sessions a week. The project
-is worth 2.5 of the 10 points of the course.
+The model follows Google Cloud Pub/Sub. Four classes: publishers, topics,
+subscriptions (a map from subscriber to message filter), and subscribers,
+which accumulate what they receive. Messages are JSON values.
 
-## Contents
+The equational layer does the routing. The two `broadcast` functions are
+structural recursion over a list of subscriptions and over a map of
+subscribers, the second guarded by the filter:
 
-| Folder | What is in it |
-|---|---|
-| [`statement/`](statement/) | The project statement students receive, in Spanish (the original) and English. LaTeX sources and PDF. |
-| [`catalogue/`](catalogue/) | The twelve candidate systems with the properties each invites and the team size each is scoped for, and the grading rubric. |
-| [`teaching/`](teaching/) | Week-by-week plan, defense logistics, and the repertoire of live modifications asked for in the defense. |
-| [`survey/`](survey/) | The end-of-term survey, in Spanish (administered) and English (translation), and a guide to setting it up in Moodle. |
-| [`calibration/`](calibration/) | Our own publish-subscribe model, published as an example of a specification that would *not* earn top marks, and why. |
-| [`preamble/`](preamble/) | The shared LaTeX preamble the statement and survey need. |
+```maude
+op broadcast : Map{SubscriberId, Filter} JSON -> Configuration .
+eq broadcast(empty, J) = none .
+eq broadcast((SID |-> F, MSF), J) = if evalAttributes(J, F)
+                                    then to SID : J
+                                    else none
+                                    fi
+                                    broadcast(MSF, J) .
+```
 
-## Building the PDFs
+The rule layer has four rules: publisher to topic, topic to subscription,
+subscription to its matching subscribers, subscriber accumulates.
 
-The PDFs are included. To rebuild one, run `pdflatex` from its own folder;
-the sources load the preamble from `../preamble/`. The preamble needs
-PSTricks (`pst-all`), which is not part of a minimal TeX Live installation
-(on Debian and Ubuntu: `texlive-pstricks`), and the Spanish sources need
-`texlive-lang-spanish`.
+## Why it would not earn top marks
 
-## Maude version
+The signature mirrors the real system closely: publishers with an ordering
+key and a retry policy, topics with a retention duration and a storage policy.
+The notes after `eof` show where it came from: they are the attribute tables
+of the Pub/Sub documentation, transcribed. It looks substantial.
 
-Projects are graded with Maude 3.5. Students may use any version.
+But the four rules are unconditional and none of them can fail. There is no
+acknowledgement and no redelivery, and the retry policy and the ordering key
+are declared and never read by any rule. The properties a team would
+naturally state, such as every published message reaching every matching
+subscriber, hold by construction: the model checker confirms them without
+the model ever having been at risk of violating them.
 
-## What is not here
+The heuristic we took from it is the one the menu is ordered by:
+**difficulty lives in the rules, not in the signature.** A rich signature is
+cheap; it can be transcribed from an API reference, with or without an
+assistant. What separates a demanding model from a decorative one is how many
+rules are conditional, what the model allows to go wrong, and whether any
+stated property could actually fail. The `TODO` names what would have made
+this one demanding: acknowledgements that can fail, and a retry policy with a
+timeout and a maximum number of attempts.
 
-Student submissions, and any per-student data.
+## Loading it
 
-## License
+`pubsub.maude` loads `json.maude`, which loads `value.maude`, which loads
+`date.maude`; all four are in this folder, and Maude resolves each `load`
+relative to the file that contains it, so it works from any directory:
 
-Documents are licensed under CC BY 4.0, and the Maude code under the MIT
-License. See [`LICENSE.md`](LICENSE.md).
+```
+maude calibration/pubsub.maude
+```
 
-## Citation
+The file ends with `rew init .`, which delivers the four example messages
+from two publishers, through one topic and two subscriptions, to three
+subscribers with different filters. It loads without warnings and the
+rewrite terminates in Maude 3.5.
 
-If you use these materials, please cite the paper above.
+## Why publish-subscribe is not on the menu
+
+A team that chose publish-subscribe would have this model in front of them,
+so the system was taken off the menu. In a modeling course, every worked
+model you publish retires a system.
