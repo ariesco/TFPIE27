@@ -1,0 +1,63 @@
+\input{../preamble/preambuloProblemas}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Curso 2026/27
+\medskip
+
+Pr\'actica 1: Introducci\'on a los lenguajes de especificaci\'on\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+\begin{listaejercicios}
+
+\item
+Especifica en Maude un m\'odulo funcional \verb"ARBIN" para \'arboles binarios de b\'usqueda. El m\'odulo
+tendr\'a:
+
+\begin{listaalph}
+\item
+Constructoras para el \'arbol de b\'usqueda vac\'io y para nodos con clave, valor, hijo derecho e hijo izquierdo.
+Tanto las claves como los valores ser\'an n\'umeros naturales.
+
+\item
+Una funci\'on \verb"mezcla", que recibe dos naturales y devuelve otro natural. Esta funci\'on se usar\'a
+para combinar dos valores al insertar una clave que ya estaba y puede tener el comportamiento que
+quieras como, por ejemplo, sumar los dos valores.
+
+\item
+Una funci\'on de inserci\'on. Esta funci\'on usa \verb"mezcla" para combinar
+dos valores cuando la clave que se est\'a insertando ya exist\'ia.
+
+\item
+Una funci\'on parcial de b\'usqueda, que dado un \'arbol binario de b\'usqueda y una clave (un natural) devuelva
+el valor asociado, si es que existe.
+
+\end{listaalph}
+
+\item
+Haz pruebas en el m\'odulo:
+
+\begin{listaalph}
+
+\item
+Insertando valores en distintos \'arboles, probando el caso en el que la clave ya est\'a.
+
+\item
+Buscando valores, probando el caso en el que la clave no est\'a.
+
+\end{listaalph}
+
+\end{listaejercicios}
+
+\end{document}

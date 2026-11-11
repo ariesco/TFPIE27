@@ -1,0 +1,56 @@
+\input{../preamble/preambuloProblemas}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Curso 2026/27
+\medskip
+
+Pr\'actica 2: Introducci\'on a los lenguajes de especificaci\'on II\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+Descarga el fichero \verb"tienda.maude", enti\'endelo y realiza las siguientes modificaciones:
+
+\begin{listaejercicios}
+
+\item
+Define un m\'odulo para listas de \texttt{String}. En este apartado basta con que definas el tipo y
+las constructoras.
+
+\item
+Importa el m\'odulo para listas en el m\'odulo \verb"ABB" y define una funci\'on \verb"inorden"
+que, dado un t\'ermino de tipo \verb"ABB", devuelve una lista de \texttt{String} correspondiente al
+inorden de las claves. A\~nade las funciones sobre listas necesarias en el m\'odulo del apartado anterior.
+
+\item
+Usa el comando \verb"red" para probar que la funci\'on \verb"inorden" funciona.
+
+\item
+Modifica la especificaci\'on para que los compradores puedan adquirir los productos de uno en uno. De esta manera,
+aunque la tienda no tenga todos los productos que necesita el cliente puede venderle tantos como tenga en stock.
+
+\item
+Haz la misma modificaci\'on para que la tienda pueda adquirir productos de los representantes de uno en uno.
+
+\item
+Define nuevas constructoras para \verb"Comprador" y \verb"Representante" (no es necesario que borres
+las antiguas) para que indiquen si quieren comprar libros o pel\'iculas. Define tambi\'en las nuevas
+reglas necesarias para estas constructoras.
+
+\item
+Define una tienda de ejemplo y usa los comandos \verb"rew", \verb"frew", \verb"search" y \verb"show path"
+para probar el funcionamiento del m\'odulo.
+
+\end{listaejercicios}
+
+\end{document}

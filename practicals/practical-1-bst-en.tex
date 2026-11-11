@@ -1,0 +1,66 @@
+\input{../preamble/preambuloProblemas_en}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}\\[2pt]
+\textit{(IT Auditing, Quality, and Reliability)}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Academic Year 2026/27
+\medskip
+
+Practical 1: Introduction to specification languages\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+\begin{listaejercicios}
+
+\item
+Specify in Maude a functional module \verb"BST" for binary search trees. The
+module will have:
+
+\begin{listaalph}
+\item
+Constructors for the empty search tree and for nodes with a key, a value, a
+left child, and a right child. Both keys and values will be natural numbers.
+
+\item
+A function \verb"merge", which takes two natural numbers and returns another
+natural number. This function will be used to combine two values when
+inserting a key that was already present, and it can behave however you
+like: for example, it can add the two values.
+
+\item
+An insertion function. This function uses \verb"merge" to combine two values
+when the key being inserted already existed.
+
+\item
+A partial lookup function that, given a binary search tree and a key (a
+natural number), returns the associated value, if there is one.
+
+\end{listaalph}
+
+\item
+Test the module:
+
+\begin{listaalph}
+
+\item
+Inserting values into different trees, including the case in which the key
+is already present.
+
+\item
+Looking up values, including the case in which the key is not present.
+
+\end{listaalph}
+
+\end{listaejercicios}
+
+\end{document}

@@ -16,6 +16,9 @@ assessment. Dates are those of that year.
 
 ## Week by week
 
+The statements of the three practicals are in [`practicals/`](../practicals/).
+
+
 | Week | Dates | Lecture (Monday) | Laboratory (Thursday) |
 |---|---|---|---|
 | 1 | 26 and 29 Oct | Maude basics: functional modules, sorts, operators, equations | Practical 1 (ungraded): binary search tree |

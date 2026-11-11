@@ -1,0 +1,162 @@
+fmod BST is
+ pr STRING .
+
+ sort Pair .
+
+ op <_,_> : Nat Nat -> Pair [ctor] .
+
+ sort BST .
+
+ op empty : -> BST [ctor] .
+ op _[_,_]_ : BST String Pair BST -> BST [ctor] .
+
+ vars Q Q' V V' : Nat .
+ vars P P' : Pair .
+ vars S S' : String .
+ vars T T' L R : BST .
+
+ op first : Pair -> Nat .
+ eq first(< Q, V >) = Q .
+
+ op second : Pair -> Nat .
+ eq second(< Q, V >) = V .
+
+ *** The first pair is the one we have and the second the one we want to add.
+ *** We add up the quantities and update the price.
+ op insertNew : Pair Pair -> Pair .
+ eq insertNew(< Q, V >, < Q', V' >) = < Q + Q', V' > .
+
+ op remove : Pair Nat ~> Pair .
+ ceq remove(< Q, V >, Q') = < sd(Q, Q'), V >
+  if Q >= Q' .
+
+ op insert : BST String Pair -> BST .
+ eq insert(empty, S, P) = empty [S, P] empty .
+ ceq insert(L [S, P] R, S', P') = L [S, insertNew(P, P')] R
+  if S == S' .
+ ceq insert(L [S, P] R, S', P') = L [S, P] insert(R, S', P')
+  if S < S' .
+ ceq insert(L [S, P] R, S', P') = insert(L, S', P') [S, P] R
+  if S > S' .
+
+ op quantity : BST String -> Nat .
+ eq quantity(empty, S) = 0 .
+ ceq quantity(L [S, P] R, S') = first(P)
+  if S == S' .
+ ceq quantity(L [S, P] R, S') = quantity(R, S')
+  if S < S' .
+ ceq quantity(L [S, P] R, S') = quantity(L, S')
+  if S > S' .
+
+ op price : BST String ~> Nat .
+ ceq price(L [S, P] R, S') = second(P)
+  if S == S' .
+ ceq price(L [S, P] R, S') = price(R, S')
+  if S < S' .
+ ceq price(L [S, P] R, S') = price(L, S')
+  if S > S' .
+
+ op sell : BST String Nat -> BST .
+ eq sell(empty, S, Q) = empty .
+ ceq sell(L [S, P] R, S', Q) = L [S, remove(P, Q)] R
+  if S == S' .
+ ceq sell(L [S, P] R, S', Q) = L [S, P] sell(R, S', Q)
+  if S < S' .
+ ceq sell(L [S, P] R, S', Q) = sell(L, S', Q) [S, P] R
+  if S > S' .
+endfm
+
+fmod PEOPLE is
+ pr STRING .
+
+ sorts People Buyer Supplier .
+ subsort Buyer Supplier < People .
+
+ op nobody : -> People [ctor] .
+ op __ : People People -> People [ctor assoc comm id: nobody] .
+
+ op buyer : String Nat -> Buyer [ctor] .
+ op supplier : String Nat Nat -> Supplier [ctor] .
+endfm
+
+mod SHOP is
+ pr PEOPLE .
+ pr BST .
+
+ sort Shop .
+
+ *** Film catalogue, book catalogue, and cash in the till.
+ op [_|_,_,_] : People BST BST Nat -> Shop [ctor] .
+
+ var  G : People .
+ var  S : String .
+ vars N D D' V : Nat .
+ vars F F' B B' : BST .
+
+ crl [sell-film] :
+     [ buyer(S, N) G | F, B, D ]
+  => [ G | sell(F, S, N), B, D + (price(F, S) * N) ]
+  if quantity(F, S) >= N .
+
+ ***(
+ *** Using matching conditions.
+ crl [sell-film] :
+     [ buyer(S, N) G | F, B, D ]
+  => [ G | F', B, D' ]
+  if quantity(F, S) >= N /\
+     F' := sell(F, S, N) /\
+     D' := D + (price(F, S) * N) .
+ )
+
+ crl [sell-book] :
+     [ buyer(S, N) G | F, B, D ]
+  => [ G | F, sell(B, S, N), D + (price(B, S) * N) ]
+  if quantity(B, S) >= N .
+
+ ***(
+ *** Using matching conditions.
+ crl [sell-book] :
+     [ buyer(S, N) G | F, B, D ]
+  => [ G | F, B', D' ]
+  if quantity(B, S) >= N /\
+     B' := sell(B, S, N) /\
+     D' := D + (price(B, S) * N) .
+ )
+
+ crl [new-films] :
+     [ supplier(S, N, V) G | F, B, D ]
+  => [ G | insert(F, S, < N, V * 2 >), B, sd(D, N * V) ]
+  if N * V <= D .
+
+ crl [new-books] :
+     [ supplier(S, N, V) G | F, B, D ]
+  => [ G | F, insert(B, S, < N, V * 2 >), sd(D, N * V) ]
+  if N * V <= D .
+endm
+
+mod EXAMPLE is
+ pr SHOP .
+
+ ops b1 b2 b3 : -> Buyer .
+ eq b1 = buyer("a", 3) .
+ eq b2 = buyer("b", 2) .
+ eq b3 = buyer("c", 2) .
+
+ ops s1 s2 s3 : -> Supplier .
+ eq s1 = supplier("a", 1, 10) .
+ eq s2 = supplier("b", 2, 20) .
+ eq s3 = supplier("c", 3, 30) .
+
+ op shop : -> Shop .
+ eq shop = [ b1 b2 b3 s1 s2 s3 | empty, empty, 100] .
+endm
+
+eof
+
+rew shop .
+
+frew shop .
+
+search shop =>* [ G:People | F:BST, B:BST, D:Nat] s.t. D:Nat > 100 .
+
+show path 7 .

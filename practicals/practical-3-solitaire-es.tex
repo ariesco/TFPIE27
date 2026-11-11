@@ -1,0 +1,85 @@
+\input{../preamble/preambuloProblemas}
+
+\usepackage{pgf}
+\usepackage{tikz}
+%\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+\usepackage{url}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Curso 2026/27
+\medskip
+
+Pr\'actica 3: Senku\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+El Senku es un solitario que se puede jugar en diferentes tipos de tableros. Al principio,
+todas las posiciones excepto una contienen fichas y el objetivo final es acabar solo con
+una. Para ello, las piezas saltan unas sobre otras, ``comi\'endose'' aquella sobre la que se
+ha saltado, como en las damas.
+%
+M\'as informaci\'on est\'a disponible
+\href{https://es.wikipedia.org/wiki/Senku}{\underline{aqu\'i}}.
+%
+En esta pr\'actica pensaremos c\'omo resolver en Maude la versi\'on triangular de Senku.
+
+\begin{listaejercicios}
+
+\item
+
+
+Piensa un tipo de datos para representar un tablero de Senku. En particular
+estamos interesados en implementar un Senku triangular, aunque puedes plantear la
+estructura de datos tan general como quieras.
+
+\item
+Implementa el salto de fichas mediante reglas.
+
+\item
+Define un tablero inicial triangular de $5$ filas que tenga un \'unico hueco en la
+segunda casilla de la tercera fila (contando desde arriba) y usa el comando \verb"search"
+para encontrar:
+\begin{listaalph}
+\item
+Una soluci\'on cualquiera.
+
+\item
+La soluci\'on ``perfecta'', que es aquella en la que la \'unica ficha que queda se encuentra
+en la mitad de la tercera fila del tri\'angulo, contando desde arriba (es decir, donde
+inicialmente hemos colocado el hueco).
+\end{listaalph}
+
+%\item
+%Crea un m\'odulo de propiedades y define las propiedades at\'omicas:
+%\begin{itemize}
+%\item
+%\verb"hayHueco", que ser\'a satisfecha
+%por cualquier tablero que contenga al menos un hueco.
+%
+%\item
+%\verb"solucionado", que ser\'a satisfecha por cualquier tablero que contiene exactamente
+%una ficha.
+%\end{itemize}
+
+%\item
+%Expresa las siguientes propiedades en LTL y comprueba, usando el \emph{model checker},
+%si se satisfacen en el tablero inicial creado anteriormente:
+%\begin{itemize}
+%\item
+%Siempre hay al menos un hueco.
+%
+%\item
+%Alguna vez se alcanza una soluci\'on y, una vez alcanzada, se permanece en dicho estado.
+%\end{itemize}
+
+\end{listaejercicios}
+
+\end{document}

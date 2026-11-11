@@ -20,6 +20,7 @@ is worth 2.5 of the 10 points of the course.
 
 | Folder | What is in it |
 |---|---|
+| [`practicals/`](practicals/) | The three short, ungraded practicals of the first three weeks (binary search tree, a shop specification to modify, triangular peg solitaire), in Spanish (the originals) and English, with the specification the second one hands out (`tienda.maude`, and `shop.maude` in English). Solutions are not included. |
 | [`statement/`](statement/) | The project statement students receive, in Spanish (the original) and English. LaTeX sources and PDF. |
 | [`catalogue/`](catalogue/) | The twelve candidate systems with the properties each invites and the team size each is scoped for, and the grading rubric. |
 | [`teaching/`](teaching/) | Week-by-week plan, defense logistics, and the repertoire of live modifications asked for in the defense. |

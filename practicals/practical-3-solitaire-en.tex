@@ -1,0 +1,85 @@
+\input{../preamble/preambuloProblemas_en}
+
+\usepackage{pgf}
+\usepackage{tikz}
+%\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+\usepackage{url}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}\\[2pt]
+\textit{(IT Auditing, Quality, and Reliability)}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Academic Year 2026/27
+\medskip
+
+Practical 3: Peg solitaire\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+Peg solitaire (\emph{Senku} in Spanish) is a single-player game that can be
+played on different kinds of boards. At the start, every position but one
+holds a peg, and the goal is to end up with only one. To get there, pegs jump
+over one another, ``capturing'' the peg they jump over, as in draughts.
+%
+More information is available
+\href{https://en.wikipedia.org/wiki/Peg_solitaire}{\underline{here}}.
+%
+In this practical we will work out how to solve the triangular version of
+peg solitaire in Maude.
+
+\begin{listaejercicios}
+
+\item
+Design a data type to represent a peg solitaire board. We are interested in
+particular in the triangular board, although you may make the data structure
+as general as you like.
+
+\item
+Implement the jumps of the pegs as rules.
+
+\item
+Define an initial triangular board with $5$ rows that has a single hole in
+the second position of the third row (counting from the top), and use the
+\verb"search" command to find:
+\begin{listaalph}
+\item
+Any solution.
+
+\item
+The ``perfect'' solution, the one in which the only remaining peg is in the
+middle of the third row of the triangle, counting from the top (that is,
+where we initially placed the hole).
+\end{listaalph}
+
+%\item
+%Create a properties module and define the atomic propositions:
+%\begin{itemize}
+%\item
+%\verb"thereIsHole", satisfied
+%by any board that contains at least one hole.
+%
+%\item
+%\verb"solved", satisfied by any board that contains exactly
+%one peg.
+%\end{itemize}
+
+%\item
+%Express the following properties in LTL and check, using the \emph{model checker},
+%whether they hold in the initial board created above:
+%\begin{itemize}
+%\item
+%There is always at least one hole.
+%
+%\item
+%A solution is eventually reached and, once reached, the board stays in that state.
+%\end{itemize}
+
+\end{listaejercicios}
+
+\end{document}

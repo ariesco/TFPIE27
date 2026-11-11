@@ -1,0 +1,61 @@
+\input{../preamble/preambuloProblemas_en}
+
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{pstricks,pst-node,pst-tree,pstricks-add}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}\\[2pt]
+\textit{(IT Auditing, Quality, and Reliability)}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Academic Year 2026/27
+\medskip
+
+Practical 2: Introduction to specification languages II\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+Download the file \verb"shop.maude", understand it, and make the following
+changes:
+
+\begin{listaejercicios}
+
+\item
+Define a module for lists of \texttt{String}. In this part it is enough to
+define the type and its constructors.
+
+\item
+Import the list module into the module \verb"BST" and define a function
+\verb"inorder" that, given a term of type \verb"BST", returns the list of
+\texttt{String} corresponding to the in-order traversal of the keys. Add any
+functions on lists you need to the module of the previous part.
+
+\item
+Use the \verb"red" command to test that the function \verb"inorder" works.
+
+\item
+Modify the specification so that buyers can purchase products one at a time.
+This way, even if the shop does not have all the products a customer needs,
+it can sell them as many as it has in stock.
+
+\item
+Make the same change so that the shop can acquire products from suppliers
+one at a time.
+
+\item
+Define new constructors for \verb"Buyer" and \verb"Supplier" (you do not need
+to delete the old ones) so that they indicate whether they want to deal in
+books or in films. Also define the new rules these constructors need.
+
+\item
+Define an example shop and use the commands \verb"rew", \verb"frew",
+\verb"search", and \verb"show path" to test how the module works.
+
+\end{listaejercicios}
+
+\end{document}
