@@ -1,0 +1,264 @@
+load value.maude
+
+fmod JSON is
+ pr VALUE .
+
+ sort JSON .
+ subsort JSON < Value .
+
+ var  MSV : Map{String, Value} .
+ vars V V' : Value .
+ var  S : String .
+ var  D : Date .
+
+ op {} : -> JSON [ctor] .
+
+ cmb v(MSV) : JSON
+  if not repeated(MSV) /\
+     allValid(MSV) .
+
+ op allValid : Map{String, Value} -> Bool .
+ ceq allValid((S |-> v(MSV), MSV)) = false
+  if not (v(MSV) :: JSON) .
+ eq allValid(MSV) = true [owise] .
+
+ op repeated : Map{String, Value} -> Bool .
+ eq repeated((S |-> V, S |-> V', MSV)) = true .
+ eq repeated(MSV) = false [owise] .
+
+ op contains : JSON String -> Bool .
+ eq contains(v(((S |-> V), MSV)), S) = true .
+ eq contains(v(MSV), S) = false [owise] .
+
+ op add : JSON String Value -> JSON .
+ eq add(v((S |-> V, MSV)), S, V') = v((S |-> V', MSV)) .
+ eq add(v(MSV), S, V) = v((S |-> V, MSV)) [owise] .
+
+ *** JSON List
+ sort JL .
+ subsort JSON < JL .
+
+ op mtJL : -> JL [ctor] .
+ op _$_ : JL JL -> JL [ctor assoc id: mtJL] .
+endfm
+
+fmod JSON-OPS is
+ pr JSON .
+
+ sort Access .
+ subsort String < Access .
+
+ op _._ : Access Access -> Access [ctor assoc] .
+
+ vars S S' S1 S2 S3 OPEN CLOSE : String .
+ vars MSV MSV' : Map{String, Value} .
+ vars N N' COUNT INDEX : Nat .
+ vars FR FR' : FindResult .
+ var  LV : List{Value} .
+ vars D M Y : NzNat .
+ var  DATE : Date .
+ var  A : Access .
+ var  V : Value .
+ var  F : Float .
+ var  J : JSON .
+ var  JL : JL .
+ var  I : Int .
+
+ op _._ : JSON Access ~> Value .
+ ceq v(MSV) . S = V
+  if V := MSV[S] .
+ ceq v(MSV) . (S . A) = v(MSV') . A
+  if v(MSV') := MSV[S] .
+
+ sort Filter .
+ op noFilter : -> Filter [ctor] . *** TODO
+ op _=_ : Access Value -> Filter [ctor] .
+
+ op eval : JSON Filter -> Bool .
+ eq eval(J, noFilter) = true .
+ eq eval(J, A = V) = (J . A) == V .
+
+ op evalAttributes : JSON Filter -> Bool .
+ eq evalAttributes(J, noFilter) = true .
+ eq evalAttributes(J, A = V) = (J . ("message" . "attributes" . A)) == V .
+
+ op parse : String ~> Value .
+ eq parse("true") = v(true) .
+ eq parse("false") = v(false) .
+ ceq parse(S) = v(LV)
+  if substr(S, 0, 1) == "[" /\
+     S' := substr(S, 1, sd(length(S), 2)) /\
+     LV := parse*(S') .
+ ceq parse(S) = v(S1)
+  if substr(S, 0, 1) == "\"" /\
+     S1 := getFirstString(S) .
+ ceq parse(S) = parseDict(S1)
+  if substr(S, 0, 1) == "{" /\
+     < S1, S2 > := getDictOrList(S, "{", "}", 1, 1) .
+ ceq parse(S) = v(N)
+  if N := rat(S, 10) .
+ eq parse(S) = v(S) [owise] .
+
+ sort ElementRestPair .
+ op <_,_> : String String -> ElementRestPair [ctor] .
+ op <_,_> : Value String -> ElementRestPair [ctor] .
+
+ op parseDict : String -> Value .
+ ceq parseDict(S) = v(MSV)
+  if MSV := $parseDict(S) .
+
+ op $parseDict : String -> Map{String, Value} .
+ eq $parseDict("") = empty .
+ ceq $parseDict(S) = $parseDict(S')
+  if (substr(S, 0, 1) == ",") or (substr(S, 0, 1) == " ") /\
+     S' := substr(S, 1, length(S)) .
+ ceq $parseDict(S) = S1 |-> V, MSV
+  if substr(S, 0, 1) == "\"" /\
+     S1 := getFirstString(S) /\
+     S2 := afterFirstString(S) /\
+     < V, S3 > := valueAndRest(S2) /\
+     MSV := $parseDict(S3) .
+
+ op valueAndRest : String -> ElementRestPair .  *** TODO
+ ceq valueAndRest(S) = valueAndRest(S')
+  if (substr(S, 0, 1) == ":") or (substr(S, 0, 1) == " ") /\
+     S' := substr(S, 1, length(S)) .
+ ceq valueAndRest(S) = < v(true), S' >
+  if substr(S, 0, 4) == "true" /\
+     S' := substr(S, 4, length(S)) .
+ ceq valueAndRest(S) = < v(false), S' >
+  if substr(S, 0, 5) == "false" /\
+     S' := substr(S, 5, length(S)) .
+ ceq valueAndRest(S) = < v(S1), S2 >
+  if substr(S, 0, 1) == "\"" /\
+     S1 := getFirstString(S) /\
+     S2 := afterFirstString(S) .
+ ceq valueAndRest(S) = < V, S2 >
+  if substr(S, 0, 1) == "{" /\
+     < S1, S2 > := getDictOrList(S, "{", "}", 1, 1) /\
+     V := parseDict(S1) .
+ ceq valueAndRest(S) = < v(LV), S2 >
+  if substr(S, 0, 1) == "[" /\
+     < S1, S2 > := getDictOrList(S, "[", "]", 1, 1) /\
+     LV := parse*(S1) .
+ ceq valueAndRest(S) = < V, S2 >
+  if S1 := substr(S, 0, 1) /\
+     N := rat(S, 10) /\
+     < V, S2 > := natAndRest(S) .
+
+ --- Parses JSON scaped strings like "[{\"text\" : \"Hello from chat id lotrbot/69ff8d10-fc30-424d-8271-504acdc782c2/1771929767!\"}\n]"
+ op parse* : String -> List{Value} .
+ eq parse*("") = nil .
+ ceq parse*(S) = v(true) parse*(S')
+  if substr(S, 0, 4) == "true" /\
+     S' := substr(S, 4, length(S)) .
+ ceq parse*(S) = v(false) parse*(S')
+  if substr(S, 0, 5) == "false" /\
+     S' := substr(S, 5, length(S)) .
+ ceq parse*(S) = parse*(S')
+  if (substr(S, 0, 1) == ",") or (substr(S, 0, 1) == " ") /\
+     *** Until the end - more characters than available, Maude takes them all.
+     S' := substr(S, 1, length(S)) .
+ ceq parse*(S) = v(S1) parse*(S2)
+  if substr(S, 0, 1) == "\"" /\
+     S1 := getFirstString(S) /\
+     S2 := afterFirstString(S) .
+ ceq parse*(S) = parseDict(S1) parse*(S2)
+  if substr(S, 0, 1) == "{" /\
+     < S1, S2 > := getDictOrList(S, "{", "}", 1, 1) .
+ ceq parse*(S) = parseDict(S1) parse*(S2)
+  if substr(S, 0, 1) == "[" /\
+     < S1, S2 > := getDictOrList(S, "[", "]", 1, 1) .
+ ceq parse*(S) = V parse*(S2)
+  if S1 := substr(S, 0, 1) /\
+     N := rat(S, 10) /\
+     < V, S2 > := natAndRest(S) .
+
+ op _smaller_ : FindResult FindResult -> Bool .
+ eq notFound smaller notFound = false .
+ eq N smaller notFound = true .
+ eq N smaller N' = N < N' .
+
+ op natAndRest : String ~> ElementRestPair .
+ eq natAndRest(S) = $natAndRest(S, "", 0) .
+
+ op $natAndRest : String String Nat ~> ElementRestPair .
+ ceq $natAndRest(S1, S2, INDEX) = $natAndRest(S1, S2 + S, INDEX + 1)
+  if S := substr(S1, INDEX, 1) /\
+     N := rat(S, 10) .
+ ceq $natAndRest(S1, S2, INDEX) = < v(N), S' >
+  if S := substr(S1, 0, INDEX) /\
+     N := rat(S, 10) /\
+     S' := substr(S1, INDEX, length(S1)) .
+
+ op getDictOrList : String String String Nat Nat ~> ElementRestPair .
+ ceq getDictOrList(S, OPEN, CLOSE, INDEX, 0) = < S1, S2 >
+     *** Skip { or [ and } or ] symbols
+  if S1 := substr(S, 1, sd(INDEX, 2)) /\
+     *** Skip } or ] symbol
+     S2 := substr(S, INDEX, length(S)) .
+ ceq getDictOrList(S, OPEN, CLOSE, INDEX, s(COUNT)) = getDictOrList(S, OPEN, CLOSE, FR' + 1, COUNT)
+  if FR := find(S, OPEN, INDEX) /\
+     FR' := find(S, CLOSE, INDEX) /\
+     FR' smaller FR .
+ ceq getDictOrList(S, OPEN, CLOSE, INDEX, s(COUNT)) = getDictOrList(S, OPEN, CLOSE, FR + 1, s(s(COUNT)))
+  if FR := find(S, OPEN, INDEX) /\
+     FR' := find(S, CLOSE, INDEX) /\
+     FR smaller FR' .
+
+ op getFirstString : String -> String .
+ ceq getFirstString(S) = S'
+  if N := find(S, "\"", 1) /\
+     S' := substr(S, 1, sd(N, 1)) .
+ eq getFirstString(S) = S [owise] .
+
+ op afterFirstString : String -> String .
+ ceq afterFirstString(S) = S'
+  if N := find(S, "\"", 1) /\
+     *** Until the end - more characters than available, Maude takes them all.
+     S' := substr(S, N + 1, length(S)) .
+ eq afterFirstString(S) = S [owise] .
+
+ op print* : JL -> String .
+ eq print*(mtJL) = "" .
+ eq print*(J $ JL) = print(J) + "\n" + print*(JL) .
+
+ op print* : List{Value} -> String .
+ eq print*(nil) = "" .
+ eq print*(V) = print(V) .
+ ceq print*(V LV) = print(V) + ", " + print*(LV)
+  if LV =/= nil .
+
+ op print : Value -> String .
+ eq print(v(MSV)) = "{" + print(MSV) + "}" .
+ eq print(v(DATE)) = print(DATE) .
+ eq print(v(S)) = "\"" + S + "\"" .
+ eq print(v(LV)) = "[" + print*(LV) + "]" .
+ eq print(v(F)) = string(F) .
+ eq print(v(I)) = string(I, 10) .
+
+ op print : Map{String, Value} -> String .
+ eq print(empty) = "" .
+ ceq print((S |-> V, MSV)) = "\"" + S + "\"" + " : " + print(V) + ", " + print(MSV)
+  if MSV =/= empty .
+ eq print(S |-> V) = "\"" + S + "\"" + " : " + print(V) .
+
+ op print : Date -> String .
+ eq print(date(D, M, Y)) = string(Y, 10) + "-" + string(M, 10) + "-" + string(D, 10) .
+
+ op print : Bool -> String .
+ eq print(true) = "true" .
+ eq print(false) = "false" .
+endfm
+
+view JSON from TRIV to JSON is
+    sort Elt to JSON .
+endv
+
+eof
+
+load json.maude 
+--- Expected: result Value: v(v("text" |-> v("Hello from chat id lotrbot/69ff8d10-fc30-424d-8271-504acdc782c2/1771929767!")))
+red parse("[{\"text\": \"Hello from chat id lotrbot/69ff8d10-fc30-424d-8271-504acdc782c2/1771929767!\"}]") .
+--- Expected: result String: "[{\"text\" : \"Hello from chat id lotrbot/69ff8d10-fc30-424d-8271-504acdc782c2/1771929767!\"}\n]"
+red print(parse("[{\"text\": \"Hello from chat id lotrbot/69ff8d10-fc30-424d-8271-504acdc782c2/1771929767!\"}]")) .

@@ -1,0 +1,305 @@
+\input{../preamble/preambuloProblemas}
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{enumitem}
+
+\newcommand{\cb}{\ding{113}}
+\newcommand{\cbfive}{\cb & \cb & \cb & \cb & \cb}
+\newcommand{\cbfour}{\cb & \cb & \cb & \cb}
+
+\newcommand{\bloque}[1]{\bigskip\noindent\textbf{\large #1}\par\nobreak\smallskip}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Curso 2026/27
+\medskip
+
+Encuesta final sobre el proyecto de Maude\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+\noindent
+\textbf{Antes de empezar.} Esta encuesta es \textbf{an\'onima} y
+\textbf{voluntaria}: no puntúa, no se sabe qui\'en la ha contestado y no
+influye en tu nota ni en la de nadie.
+%
+Se tarda unos 10 minutos.
+%
+Este a\~no la asignatura se ha evaluado de una forma distinta a la habitual, y
+lo que respond\'ais aqu\'i es lo \'unico que permite saber si el cambio ha
+merecido la pena o hay que deshacerlo. Contestad con calma y sin adornar
+nada: una respuesta cr\'itica es m\'as \'util que una amable.
+
+\smallskip
+\noindent
+\textbf{Uso de los datos.} Las respuestas podr\'an publicarse en un art\'iculo
+sobre el rediseño de la asignatura, incluidas respuestas individuales y citas
+literales de las preguntas abiertas. No se publicar\'a tu nombre ni ning\'un
+dato que permita identificarte. Si prefieres que tus respuestas no se usen
+con ese fin, marca la casilla del \'ultimo apartado.
+
+\bloque{A. Contexto}
+
+\begin{enumerate}[leftmargin=*]
+
+\item ¿De cu\'antas personas era tu equipo?\\
+\cb\ Dos \qquad \cb\ Tres
+
+\item El sistema que modelasteis lo elegisteis:\\
+\cb\ De la lista del enunciado \qquad
+\cb\ Lo propusimos nosotros
+
+\item ¿Cu\'anto conoc\'ias ese sistema \emph{antes} de empezar el proyecto?\\
+\cb\ Nada \quad
+\cb\ Hab\'ia o\'ido hablar de \'el \quad
+\cb\ Lo hab\'ia usado o estudiado por encima \quad
+\cb\ Lo conoc\'ia bien
+
+\item \emph{(Opcional)} ¿Qu\'e sistema modelasteis?
+\rule{7cm}{0.4pt}\\
+{\small Puedes dejarlo en blanco: si tu equipo fue el \'unico que eligi\'o
+ese sistema, responder aqu\'i permite identificarlo (aunque no a ti dentro
+de \'el).}
+
+\end{enumerate}
+
+\bloque{B. Dedicaci\'on}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item Aproximadamente, ¿cu\'antas horas \textbf{en total} dedicaste al
+proyecto fuera de clase?\\
+\cb\ Menos de 10 \quad
+\cb\ 10--19 \quad
+\cb\ 20--29 \quad
+\cb\ 30--39 \quad
+\cb\ 40 o m\'as
+
+\item ¿C\'omo se reparti\'o aproximadamente ese tiempo? (indica un porcentaje
+orientativo en cada fila; deber\'ia sumar 100)
+
+\smallskip
+\begin{tabular}{@{}p{9cm}l@{}}
+Entender el sistema real (documentaci\'on, art\'iculos, c\'odigo) & \rule{1.5cm}{0.4pt}\,\% \\
+Escribir y depurar la especificaci\'on en Maude & \rule{1.5cm}{0.4pt}\,\% \\
+Formular y verificar las propiedades (\texttt{search}, LTL) & \rule{1.5cm}{0.4pt}\,\% \\
+Mutaciones & \rule{1.5cm}{0.4pt}\,\% \\
+Redactar la memoria y preparar la defensa & \rule{1.5cm}{0.4pt}\,\% \\
+\end{tabular}
+
+\item Comparado con lo que esperabas al leer el enunciado, la carga de
+trabajo real fue:\\
+\cb\ Mucho menor \quad
+\cb\ Menor \quad
+\cb\ La esperada \quad
+\cb\ Mayor \quad
+\cb\ Mucho mayor
+
+\end{enumerate}
+
+\bloque{C. Aprendizaje percibido}
+
+\noindent
+Indica tu grado de acuerdo con cada afirmaci\'on:
+{\small 1 = totalmente en desacuerdo, 2 = en desacuerdo, 3 = ni de acuerdo ni
+en desacuerdo, 4 = de acuerdo, 5 = totalmente de acuerdo.}
+
+\smallskip
+\begin{tabular}{@{}p{11.2cm}ccccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 & \small 5 \\
+\hline
+8. El proyecto me hizo conectar ideas de la asignatura con conocimientos de otras asignaturas. & \cbfive \\[2pt]
+9. Tuve que analizar en profundidad una idea o un mecanismo, no solo aplicar una receta. & \cbfive \\[2pt]
+10. He aprendido algo que cambi\'o mi forma de entender c\'omo funcionan los sistemas concurrentes reales. & \cbfive \\[2pt]
+11. Ahora s\'e decidir mejor cu\'ando algo debe ser una ecuaci\'on y cu\'ando una regla. & \cbfive \\[2pt]
+12. Ahora entiendo mejor qu\'e garantiza y qu\'e \emph{no} garantiza una verificaci\'on formal. & \cbfive \\[2pt]
+13. Sabr\'ia aplicar lo aprendido a un sistema distinto del que model\'o mi equipo. & \cbfive \\[2pt]
+14. Decidir c\'omo representar el sistema (qu\'e tipos y constructores usar, qu\'e es estado y qu\'e es mensaje) me cost\'o m\'as que escribir las ecuaciones y las reglas. & \cbfive \\[2pt]
+\hline
+\end{tabular}
+
+\bloque{D. Implicaci\'on con el proyecto}
+
+\noindent
+Para cada frase, indica en qu\'e medida te describe:
+{\small 1 = no me describe nada, 2 = me describe poco, 3 = me describe
+bastante, 4 = me describe totalmente.}
+
+\smallskip
+\begin{tabular}{@{}p{12.1cm}cccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 \\
+\hline
+15. En las sesiones dedicadas al proyecto trabajaba concentrado. & \cbfour \\[2pt]
+16. Dediqu\'e al proyecto m\'as esfuerzo del m\'inimo necesario para aprobarlo. & \cbfour \\[2pt]
+17. Disfrut\'e trabajando en el proyecto. & \cbfour \\[2pt]
+18. Cuando algo no sal\'ia, me apetec\'ia insistir hasta entender por qu\'e. & \cbfour \\[2pt]
+19. El proyecto me pareci\'o aburrido. & \cbfour \\[2pt]
+20. Me limit\'e a hacer lo justo para cumplir con el enunciado. & \cbfour \\[2pt]
+21. He hablado del proyecto con gente de fuera de la asignatura. & \cbfour \\[2pt]
+22. Me qued\'e con ganas de seguir mejorando el modelo despu\'es de la entrega. & \cbfour \\[2pt]
+\hline
+\end{tabular}
+
+\bloque{E. Comparaci\'on con las pr\'acticas cortas del principio de curso}
+
+\noindent
+Antes del proyecto hicisteis tres pr\'acticas cortas de Maude en esta misma
+asignatura, que no contaban para la nota. Comparado con aquellas
+pr\'acticas, el proyecto me result\'o:
+
+\noindent
+{\small 1 = mucho menos, 2 = algo menos, 3 = igual, 4 = algo m\'as,
+5 = mucho m\'as.}
+
+\smallskip
+\begin{tabular}{@{}p{11.2cm}ccccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 & \small 5 \\
+\hline
+23. \dots interesante & \cbfive \\[2pt]
+24. \dots exigente & \cbfive \\[2pt]
+25. \dots \'util para aprender Maude de verdad & \cbfive \\[2pt]
+26. \dots relacionado con lo que espero hacer profesionalmente & \cbfive \\[2pt]
+27. \dots exigente en cuanto a entender el sistema \emph{antes} de poder
+escribir c\'odigo & \cbfive \\[2pt]
+\hline
+\end{tabular}
+
+\smallskip
+\begin{enumerate}[leftmargin=*,resume]
+\setcounter{enumi}{27}
+\item Si pudieras elegir el formato de evaluaci\'on de la asignatura, preferir\'ias:\\
+\cb\ Solo pr\'acticas cortas como las del principio de curso \quad
+\cb\ Solo un proyecto en equipo como este \quad\\
+\cb\ Las dos cosas, como este a\~no \quad
+\cb\ Me da igual
+\end{enumerate}
+
+\bloque{F. Asistentes de IA y el MCP para Maude}
+
+\noindent
+El uso de asistentes de IA en este proyecto estaba \textbf{permitido}, y el
+MCP para Maude recomendado, as\'i que aqu\'i no se trata de detectar nada: interesa saber c\'omo os han
+funcionado y, sobre todo, si el MCP para Maude aporta algo que un asistente
+gen\'erico no d\'e. El bloque es an\'onimo, como el resto.
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item ¿Con qu\'e frecuencia usaste alg\'un asistente durante el proyecto?\\
+\cb\ Nunca \quad
+\cb\ Puntualmente \quad
+\cb\ Con frecuencia \quad
+\cb\ Casi continuamente
+
+\item ¿Cu\'ales? \emph{(marca todo lo que corresponda)}\\
+\cb\ ChatGPT \quad \cb\ Claude \quad \cb\ Copilot \quad \cb\ Gemini \quad
+\cb\ Otro: \rule{4cm}{0.4pt}
+
+\item ¿Para qu\'e los usaste? \emph{(marca todo lo que corresponda)}
+
+\begin{itemize}[leftmargin=*,label=\cb,itemsep=1pt]
+\item Entender el sistema real que \'ibamos a modelar
+\item Consultar sintaxis de Maude
+\item Explicar mensajes de error del int\'erprete
+\item Escribir ecuaciones o reglas concretas
+\item Escribir la especificaci\'on entera o casi entera
+\item Formular las propiedades (\texttt{search}, LTL)
+\item Interpretar la salida del model checker
+\item Proponer las mutaciones
+\item Redactar partes de la memoria
+\item Otros: \rule{5cm}{0.4pt}
+\end{itemize}
+
+\item ¿Usaste el MCP para Maude (Harold)?\\
+\cb\ No lo instal\'e \quad
+\cb\ Lo instal\'e pero apenas lo us\'e \quad
+\cb\ Lo us\'e a veces \quad
+\cb\ Lo us\'e habitualmente
+
+\smallskip
+{\small Si no lo usaste, indica brevemente por qu\'e y pasa a la
+pregunta~\ref{q:rehacer}: \rule{5.5cm}{0.4pt}}
+
+\item Instalarlo y ponerlo en marcha fue sencillo:\\
+\cb\ 1 (nada) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (mucho)
+
+\item Los diagn\'osticos que devuelve sobre la especificaci\'on me resultaron
+\'utiles:\\
+\cb\ 1 (nada) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (mucho)
+
+\item Con el MCP, el asistente generaba c\'odigo Maude m\'as correcto que sin
+\'el:\\
+\cb\ 1 (nada) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (mucho)
+\quad \cb\ No lo puedo comparar
+
+\item ¿En qu\'e situaciones te result\'o m\'as \'util el MCP?\\[8pt]
+\rule{\linewidth}{0.4pt}
+
+\item ¿Qu\'e le falta al MCP o qu\'e le cambiar\'ias?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item\label{q:rehacer} Del c\'odigo Maude que te gener\'o un asistente, ¿cu\'anto tuviste que
+rehacer o corregir?\\
+\cb\ No us\'e asistentes para el c\'odigo \quad \cb\ Nada o casi nada \quad
+\cb\ Poco \quad \cb\ Bastante \quad \cb\ Casi todo
+
+\item ¿Entend\'ias todo el c\'odigo que entregasteis, viniera de donde
+viniera?\\
+\cb\ S\'i, todo \quad \cb\ Casi todo \quad \cb\ Hab\'ia partes que no acababa de entender \quad
+\cb\ Bastantes partes no las entend\'ia
+
+\item ¿Probasteis a pedirle a un asistente el proyecto entero a partir del
+enunciado, a ver qu\'e sal\'ia?\\
+\cb\ No lo probamos \quad
+\cb\ S\'i, y no dio nada aprovechable \quad
+\cb\ S\'i, y dio algo que hubo que rehacer casi entero \quad
+\cb\ S\'i, y funcion\'o razonablemente bien
+
+\item Comparado con las pr\'acticas cortas del principio de curso, resolver
+este proyecto con ayuda de una IA me pareci\'o:\\
+\cb\ Mucho m\'as f\'acil \quad \cb\ M\'as f\'acil \quad \cb\ Igual \quad
+\cb\ M\'as dif\'icil \quad \cb\ Mucho m\'as dif\'icil
+
+\item ¿Qu\'e es lo que peor hacen los asistentes en Maude?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\end{enumerate}
+
+\bloque{G. Para terminar}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item ¿Qu\'e es lo mejor del proyecto? ¿Qu\'e mantendr\'ias?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item ¿Qu\'e es lo peor? ¿Qu\'e cambiar\'ias?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item ¿Qu\'e consejo le dar\'ias a alguien que empiece este proyecto el curso
+que viene?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item \cb\ \textbf{No} quiero que mis respuestas se usen en una publicaci\'on
+sobre el diseño de la asignatura.
+
+\end{enumerate}
+
+\bigskip
+\begin{center}
+\noindent\hrulefill\\
+\textit{Gracias por el tiempo dedicado.}
+\end{center}
+
+\end{document}

@@ -1,0 +1,310 @@
+\input{../preamble/preambuloProblemas_en}
+
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{enumitem}
+
+\newcommand{\cb}{\ding{113}}
+\newcommand{\cbfive}{\cb & \cb & \cb & \cb & \cb}
+\newcommand{\cbfour}{\cb & \cb & \cb & \cb}
+
+\newcommand{\bloque}[1]{\bigskip\noindent\textbf{\large #1}\par\nobreak\smallskip}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}\\[2pt]
+\textit{(IT Auditing, Quality, and Reliability)}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Academic Year 2026/27
+\medskip
+
+End-of-Term Survey on the Maude Project\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+\noindent
+{\small\textit{English translation of the instrument administered in Spanish.
+Item numbers match the Spanish version.}}
+
+\medskip
+\noindent
+\textbf{Before you start.} This survey is \textbf{anonymous} and
+\textbf{voluntary}: it carries no marks, there is no record of who answered,
+and it does not affect anyone's grade.
+%
+It takes about 10 minutes.
+%
+This year the course was assessed differently from previous years, and your
+answers here are the only way to tell whether the change was worth it or
+should be undone. Please take your time and do not sugar-coat anything: a
+critical answer is more useful than a kind one.
+
+\smallskip
+\noindent
+\textbf{Use of the data.} Your answers may be published in a paper about the
+redesign of this course, including individual answers and verbatim quotes
+from the open questions. Your name, and any data that would identify you,
+will not be published. If you prefer your answers not to be used for that
+purpose, tick the box in the last block.
+
+\bloque{A. Context}
+
+\begin{enumerate}[leftmargin=*]
+
+\item How many people were in your team?\\
+\cb\ Two \qquad \cb\ Three
+
+\item The system you modeled was:\\
+\cb\ From the list in the assignment \qquad
+\cb\ Proposed by us
+
+\item How much did you know about that system \emph{before} starting the
+project?\\
+\cb\ Nothing \quad
+\cb\ I had heard of it \quad
+\cb\ I had used or studied it superficially \quad
+\cb\ I knew it well
+
+\item \emph{(Optional)} Which system did you model?
+\rule{7cm}{0.4pt}\\
+{\small You may leave this blank: if yours was the only team that chose that
+system, answering here makes your team identifiable (though not you within
+it).}
+
+\end{enumerate}
+
+\bloque{B. Time spent}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item Approximately how many hours \textbf{in total} did you spend on the
+project outside class?\\
+\cb\ Fewer than 10 \quad
+\cb\ 10--19 \quad
+\cb\ 20--29 \quad
+\cb\ 30--39 \quad
+\cb\ 40 or more
+
+\item Roughly how was that time distributed? (give an approximate percentage
+per row; it should add up to 100)
+
+\smallskip
+\begin{tabular}{@{}p{9cm}l@{}}
+Understanding the real system (documentation, papers, code) & \rule{1.5cm}{0.4pt}\,\% \\
+Writing and debugging the Maude specification & \rule{1.5cm}{0.4pt}\,\% \\
+Stating and checking the properties (\texttt{search}, LTL) & \rule{1.5cm}{0.4pt}\,\% \\
+Mutations & \rule{1.5cm}{0.4pt}\,\% \\
+Writing the report and preparing the defense & \rule{1.5cm}{0.4pt}\,\% \\
+\end{tabular}
+
+\item Compared with what you expected when you read the assignment, the
+actual workload was:\\
+\cb\ Much lower \quad
+\cb\ Lower \quad
+\cb\ As expected \quad
+\cb\ Higher \quad
+\cb\ Much higher
+
+\end{enumerate}
+
+\bloque{C. Perceived learning}
+
+\noindent
+Indicate how much you agree with each statement:
+{\small 1 = strongly disagree, 2 = disagree, 3 = neither agree nor disagree,
+4 = agree, 5 = strongly agree.}
+
+\smallskip
+\begin{tabular}{@{}p{11.2cm}ccccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 & \small 5 \\
+\hline
+8. The project made me connect ideas from this course with knowledge from other courses. & \cbfive \\[2pt]
+9. I had to analyze an idea or a mechanism in depth, not just apply a recipe. & \cbfive \\[2pt]
+10. I learned something that changed my understanding of how real concurrent systems work. & \cbfive \\[2pt]
+11. I am now better at deciding when something should be an equation and when a rule. & \cbfive \\[2pt]
+12. I now understand better what a formal verification does and does \emph{not} guarantee. & \cbfive \\[2pt]
+13. I would be able to apply what I learned to a system other than the one my team modeled. & \cbfive \\[2pt]
+14. Deciding how to represent the system (which sorts and constructors to use, what is state and what is a message) was harder for me than writing the equations and rules. & \cbfive \\[2pt]
+\hline
+\end{tabular}
+
+\bloque{D. Engagement with the project}
+
+\noindent
+For each statement, indicate how well it describes you:
+{\small 1 = does not describe me at all, 2 = describes me a little,
+3 = describes me quite well, 4 = describes me totally.}
+
+\smallskip
+\begin{tabular}{@{}p{12.1cm}cccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 \\
+\hline
+15. In the sessions devoted to the project I worked with concentration. & \cbfour \\[2pt]
+16. I put more effort into the project than the minimum needed to pass it. & \cbfour \\[2pt]
+17. I enjoyed working on the project. & \cbfour \\[2pt]
+18. When something did not work, I wanted to keep at it until I understood why. & \cbfour \\[2pt]
+19. I found the project boring. & \cbfour \\[2pt]
+20. I did just enough to meet the requirements of the assignment. & \cbfour \\[2pt]
+21. I have talked about the project with people outside the course. & \cbfour \\[2pt]
+22. I was left wanting to keep improving the model after the submission. & \cbfour \\[2pt]
+\hline
+\end{tabular}
+
+\bloque{E. Comparison with the short practicals earlier in the course}
+
+\noindent
+Before the project you did three short Maude practicals in this same course,
+which did not count towards the grade. Compared with those practicals, I
+found the project:
+
+\noindent
+{\small 1 = much less, 2 = somewhat less, 3 = the same, 4 = somewhat more,
+5 = much more.}
+
+\smallskip
+\begin{tabular}{@{}p{11.2cm}ccccc@{}}
+& \small 1 & \small 2 & \small 3 & \small 4 & \small 5 \\
+\hline
+23. \dots interesting & \cbfive \\[2pt]
+24. \dots demanding & \cbfive \\[2pt]
+25. \dots useful for actually learning Maude & \cbfive \\[2pt]
+26. \dots related to what I expect to do professionally & \cbfive \\[2pt]
+27. \dots demanding in terms of understanding the system \emph{before} being
+able to write any code & \cbfive \\[2pt]
+\hline
+\end{tabular}
+
+\smallskip
+\begin{enumerate}[leftmargin=*,resume]
+\setcounter{enumi}{27}
+\item If you could choose the assessment format for this course, you would
+prefer:\\
+\cb\ Only short practicals like the ones early in the course \quad
+\cb\ Only a team project like this one \quad\\
+\cb\ Both, as this year \quad
+\cb\ No preference
+\end{enumerate}
+
+\bloque{F. AI assistants and the MCP for Maude}
+
+\noindent
+Using AI assistants on this project was \textbf{permitted}, and the MCP for
+Maude recommended, so this block is not about catching anything: what matters is how they worked for you and,
+above all, whether the MCP for Maude adds something a generic assistant does
+not. This block is anonymous, like the rest.
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item How often did you use an assistant during the project?\\
+\cb\ Never \quad
+\cb\ Occasionally \quad
+\cb\ Frequently \quad
+\cb\ Almost constantly
+
+\item Which ones? \emph{(tick all that apply)}\\
+\cb\ ChatGPT \quad \cb\ Claude \quad \cb\ Copilot \quad \cb\ Gemini \quad
+\cb\ Other: \rule{4cm}{0.4pt}
+
+\item What did you use them for? \emph{(tick all that apply)}
+
+\begin{itemize}[leftmargin=*,label=\cb,itemsep=1pt]
+\item Understanding the real system we were going to model
+\item Looking up Maude syntax
+\item Explaining error messages from the interpreter
+\item Writing specific equations or rules
+\item Writing the whole specification, or almost all of it
+\item Stating the properties (\texttt{search}, LTL)
+\item Interpreting the model checker's output
+\item Proposing the mutations
+\item Writing parts of the report
+\item Other: \rule{5cm}{0.4pt}
+\end{itemize}
+
+\item Did you use the MCP for Maude (Harold)?\\
+\cb\ I did not install it \quad
+\cb\ I installed it but hardly used it \quad
+\cb\ I used it sometimes \quad
+\cb\ I used it regularly
+
+\smallskip
+{\small If you did not use it, briefly say why and skip to
+question~\ref{q:rehacer}: \rule{5.5cm}{0.4pt}}
+
+\item Installing it and getting it running was easy:\\
+\cb\ 1 (not at all) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (a lot)
+
+\item The diagnostics it returns about the specification were useful to me:\\
+\cb\ 1 (not at all) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (a lot)
+
+\item With the MCP, the assistant generated more correct Maude code than
+without it:\\
+\cb\ 1 (not at all) \quad \cb\ 2 \quad \cb\ 3 \quad \cb\ 4 \quad \cb\ 5 (a lot)
+\quad \cb\ I cannot compare
+
+\item In which situations did you find the MCP most useful?\\[8pt]
+\rule{\linewidth}{0.4pt}
+
+\item What is missing from the MCP, or what would you change?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item\label{q:rehacer} Of the Maude code an assistant generated for you, how much did you have
+to redo or fix?\\
+\cb\ I did not use assistants for code \quad \cb\ Nothing or almost nothing \quad
+\cb\ A little \quad \cb\ Quite a lot \quad \cb\ Almost all of it
+
+\item Did you understand all the code you submitted, wherever it came from?\\
+\cb\ Yes, all of it \quad \cb\ Almost all \quad \cb\ There were parts I did not quite understand \quad
+\cb\ There were quite a few parts I did not understand
+
+\item Did you try asking an assistant for the whole project from the
+assignment text, just to see what came out?\\
+\cb\ We did not try \quad
+\cb\ Yes, and it produced nothing usable \quad
+\cb\ Yes, and it produced something that had to be almost entirely redone \quad
+\cb\ Yes, and it worked reasonably well
+
+\item Compared with the short practicals earlier in the course, solving this
+project with the help of an AI seemed:\\
+\cb\ Much easier \quad \cb\ Easier \quad \cb\ The same \quad
+\cb\ Harder \quad \cb\ Much harder
+
+\item What do the assistants do worst in Maude?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\end{enumerate}
+
+\bloque{G. To finish}
+
+\begin{enumerate}[leftmargin=*,resume]
+
+\item What is the best thing about the project? What would you keep?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item What is the worst? What would you change?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item What advice would you give someone starting this project next year?\\[8pt]
+\rule{\linewidth}{0.4pt}\\[10pt]
+\rule{\linewidth}{0.4pt}
+
+\item \cb\ I do \textbf{not} want my answers to be used in a publication
+about the design of this course.
+
+\end{enumerate}
+
+\bigskip
+\begin{center}
+\noindent\hrulefill\\
+\textit{Thank you for your time.}
+\end{center}
+
+\end{document}

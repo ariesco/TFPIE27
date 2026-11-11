@@ -1,0 +1,223 @@
+\input{../preamble/preambuloProblemas}
+
+\usepackage{url}
+\usepackage{hyperref}
+
+\begin{document}
+
+\begin{center}
+{\Large\textbf{Auditor\'ia, Calidad y Fiabilidad Inform\'aticas}}
+\smallskip
+
+\large
+Universidad Complutense de Madrid \qquad Curso 2026/27
+\medskip
+
+Proyecto final: especificaci\'on y verificaci\'on de una arquitectura real en Maude\hfill\mbox{}
+
+\noindent\hrulefill
+\end{center}
+
+\noindent
+Este proyecto se realiza en grupos de dos o tres estudiantes.
+%
+Cada grupo elegir\'a una arquitectura, protocolo o
+aplicaci\'on \emph{real} (no un ejemplo de juguete inventado para la ocasi\'on),
+la entender\'a en profundidad y la especificar\'a en Maude, demostrando
+propiedades sobre ella.
+
+\begin{listaejercicios}
+
+\item\label{ej:eleccion}
+Elegid un sistema real y estudiadlo lo suficiente como para poder explicar,
+en vuestras propias palabras, c\'omo funciona. Pod\'eis elegir uno de la
+siguiente lista, o proponer otro (justificando su inter\'es y con aprobaci\'on
+previa del profesor).
+
+Junto a cada sistema se indica el tama\~no de equipo para el que est\'a
+pensado su alcance: \textbf{[2]} encaja bien en una pareja, \textbf{[3]}
+pide un grupo de tres y \textbf{[2--3]} funciona en ambos casos. La lista
+va de m\'as a menos exigente. Es una recomendaci\'on, no una restricci\'on,
+y \textbf{elegir un sistema marcado \textbf{[2]} no limita la nota}: lo que
+se valora es la profundidad del desarrollo en relaci\'on con el tama\~no
+del equipo.
+
+\begin{itemize}
+\item
+\textbf{Consenso simplificado tipo Raft} (elecci\'on de l\'ider m\'as
+replicaci\'on de un \emph{log}): como mucho hay un l\'ider por t\'ermino; las
+entradas confirmadas no se pierden ante el fallo de una minor\'ia de nodos \textbf{[3]}.
+
+\item
+\textbf{Confirmaci\'on en dos fases} (\emph{two-phase commit}, 2PC): todos los
+participantes deciden lo mismo (atomicidad); ausencia de bloqueo indefinido si
+el coordinador falla tras la fase de \emph{prepare} \textbf{[3]}.
+
+\item
+\textbf{Gestor de bloqueos distribuido} (\emph{distributed lock manager}):
+exclusi\'on mutua entre clientes, ausencia de interbloqueo, liberaci\'on del
+bloqueo tras el fallo de su titular \textbf{[3]}.
+
+\item
+\textbf{Sistema de mensajer\'ia con garant\'ias de entrega}
+(\emph{at-least-once} o \emph{exactly-once}): todo mensaje enviado se entrega
+al menos una vez; ausencia de duplicados cuando se exige entrega exacta \textbf{[3]}.
+
+\item
+\textbf{Cach\'e con invalidaci\'on} (\emph{write-through} o \emph{write-back}):
+coherencia entre la cach\'e y el almacenamiento persistente, ausencia de
+lecturas obsoletas tras una invalidaci\'on \textbf{[2--3]}.
+
+\item
+\textbf{Saludo inicial de un protocolo real} (\emph{handshake}; por ejemplo el
+saludo de tres v\'ias de TCP, o una versi\'on simplificada de TLS): siempre
+termina en un estado consistente en ambos extremos \textbf{[2--3]}.
+
+\item
+\textbf{Elecci\'on de l\'ider} (algoritmo \emph{bully} u otro similar): se elige
+un \'unico l\'ider, y es siempre el de mayor prioridad entre los nodos vivos \textbf{[2--3]}.
+
+\item
+\textbf{Protocolo de cotilleo} (\emph{gossip protocol}): la informaci\'on se
+propaga eventualmente a todos los nodos vivos; convergencia del estado \textbf{[2--3]}.
+
+\item
+\textbf{Productor-consumidor con cola acotada}: ausencia de p\'erdida de
+mensajes, ausencia de desbordamiento del \emph{buffer}, ausencia de inanici\'on
+del consumidor \textbf{[2]}.
+
+\item
+\textbf{Limitador de peticiones} (\emph{rate limiter}, con \emph{token bucket}
+o \emph{leaky bucket}): nunca se aceptan m\'as peticiones que el l\'imite
+configurado en una ventana de tiempo; el sistema se recupera tras un pico de
+tr\'afico \textbf{[2]}.
+
+\item
+\textbf{Cortacircuitos} (\emph{circuit breaker}, patr\'on de resiliencia en
+microservicios): el circuito se abre tras $N$ fallos consecutivos y no se
+realizan llamadas al servicio ca\'ido mientras el circuito est\'a abierto \textbf{[2]}.
+
+\item
+\textbf{Balanceador de carga} (\emph{round robin} o \emph{least connections}):
+reparto justo de peticiones entre los nodos activos; ning\'un nodo ca\'ido
+recibe tr\'afico \textbf{[2]}.
+\end{itemize}
+
+En la memoria deb\'eis explicar qu\'e mecanismos esenciales del sistema real
+vais a modelar y, expl\'icitamente, qu\'e se simplifica o se deja fuera y por
+qu\'e esa simplificaci\'on no desvirt\'ua las propiedades que quer\'eis
+estudiar. \textbf{La profundidad del desarrollo del sistema elegido se tendr\'a en cuenta en
+la evaluaci\'on}: un sistema con m\'as concurrencia, m\'as casos l\'imite o
+propiedades m\'as dif\'iciles de expresar y verificar se valorar\'a m\'as.
+
+\item\label{ej:spec}
+Especificad el sistema elegido en Maude. Definid los tipos y estructuras de
+datos que cre\'ais necesarias, elegid bien si algo debe escribirse como una
+ecuaci\'on o como una regla, y dividid el problema en m\'odulos (m\'odulos
+funcionales para los tipos de datos del dominio, m\'odulo de sistema para la
+din\'amica del protocolo). Comentad el c\'odigo e incluid instrucciones
+claras para cargarlo.
+
+Escribid tambi\'en al menos un t\'ermino de ejemplo con un n\'umero razonable
+de agentes/\allowbreak nodos/\allowbreak mensajes en el sistema (justificad por qu\'e ese ejemplo es
+suficientemente representativo, y no un caso degenerado).
+
+\item\label{ej:props}
+Definid, usando lo que hay\'ais definido en el apartado~\ref{ej:spec}, al
+menos dos propiedades relevantes del sistema (por ejemplo: exclusi\'on
+mutua, ausencia de interbloqueo, entrega en orden, ausencia de p\'erdida de
+mensajes, terminaci\'on, ausencia de inanici\'on). Evitad propiedades
+triviales que no digan nada relevante del sistema.
+
+\item\label{ej:verificacion}
+Comprobad si las propiedades del apartado~\ref{ej:props} se cumplen:
+\begin{itemize}
+\item
+Usad el comando \verb@search@ para explorar el espacio de estados y
+comprobar (o refutar) la alcanzabilidad de estados no deseados.
+
+\item
+Formulad al menos una propiedad temporal (LTL) y comprobadla con el model
+checker de Maude, sobre un m\'odulo que incluya \verb@MODEL-CHECKER@.
+\end{itemize}
+Incluid en la memoria la salida real de Maude (transcripci\'on literal de
+los comandos y sus resultados, no solo una descripci\'on de lo que
+``deber\'ia'' pasar) y explicad brevemente el resultado del model checker en
+cada caso.
+
+\item\label{ej:mutantes}
+Introducid de forma deliberada, sobre vuestra propia especificaci\'on, al
+menos \textbf{dos mutaciones} que rompan alguna de las propiedades que
+hab\'eis verificado en el apartado~\ref{ej:verificacion} (por ejemplo:
+eliminar una condici\'on de guarda, invertir el orden de dos reglas, quitar
+un caso de un patr\'on). Volved a ejecutar \verb@search@ o el model checker
+sobre cada mutante y mostrad que la propiedad ahora falla, incluyendo el
+contraejemplo o el estado ofensivo encontrado por Maude.
+
+Explicad, en t\'erminos del sistema real (no solo del c\'odigo Maude), qu\'e
+error concreto representa cada mutaci\'on: por ejemplo, ``esto simula qu\'e
+pasar\'ia si el titular de un bloqueo cae sin liberarlo''.
+
+\item
+Escribid qu\'e reglas podr\'ian transformarse en ecuaciones para optimizar
+el model checking de cada propiedad del apartado~\ref{ej:verificacion} (basta
+con nombrar las reglas a cambiar, no hace falta modificar el c\'odigo).
+
+\end{listaejercicios}
+
+\bigskip
+\noindent\textbf{Entrega.} Adem\'as del c\'odigo Maude, entregad una memoria
+que integre los apartados anteriores en un documento coherente.
+\textbf{El proyecto se corregir\'a con Maude~3.5}: pod\'eis trabajar con la
+versi\'on que quer\'ais, pero comprobad antes de entregar que vuestra
+especificaci\'on carga sin avisos y da los mismos resultados en esa.
+
+Incluid en la memoria un \textbf{reparto de tareas}: una tabla que diga,
+para cada uno de los apartados 1--6, qui\'en lo lider\'o, m\'as un
+porcentaje aproximado de contribuci\'on por integrante que sume 100. Lo
+acuerda y lo firma todo el equipo. No hace falta que sea equilibrado: un
+reparto desigual declarado con honestidad no penaliza, y uno maquillado se
+nota en la defensa.
+
+\smallskip
+\noindent\textbf{Defensa.} Cada equipo defender\'a su proyecto oralmente en
+horario de clase, con preguntas individualizadas a cada integrante sobre
+decisiones concretas de modelado, sobre las propiedades verificadas, sobre
+las mutaciones del apartado~\ref{ej:mutantes} y sobre posibles extensiones.
+%
+Adem\'as, a cada integrante se le pedir\'a una \textbf{modificaci\'on
+peque\~na sobre vuestra propia especificaci\'on}.
+%
+\textbf{La defensa no tiene nota propia}, pero es \textbf{condici\'on
+necesaria para aprobar el proyecto}: quien no la supere no aprueba el
+proyecto, por mucha nota que tenga lo entregado, y pierde por tanto la
+parte de la asignatura que corresponde a este bloque.
+
+\smallskip
+\noindent\textbf{Sobre el uso de asistentes de IA.} El uso de IA está permitido,
+siempre y cuando sea instrumental. En caso de usarla, se recomienda el
+\href{https://pypi.org/project/harold-mcp/}{MCP para Maude}.
+
+\bigskip
+\noindent\textbf{Evaluaci\'on.} La nota del proyecto se compone de:
+
+\begin{center}
+\begin{tabular}{lr}
+Especificaci\'on en Maude (estructura, ecuaciones vs.\ reglas, comentarios, t\'ermino de ejemplo) & 25\% \\
+Propiedades definidas (apartado~\ref{ej:props}) & 10\% \\
+Verificaci\'on: \texttt{search} y model checker LTL (apartado~\ref{ej:verificacion}) & 25\% \\
+Mutaciones (apartado~\ref{ej:mutantes}) & 20\% \\
+Optimizaci\'on de reglas a ecuaciones & 5\% \\
+Memoria (coherencia, justificaci\'on de simplificaciones, profundidad del desarrollo) & 15\% \\
+\end{tabular}
+\end{center}
+
+\noindent Esta nota es de equipo, ponderada por el reparto de tareas
+declarado, que el profesor puede ajustar si la defensa no lo respalda. La
+defensa no aparece en la tabla porque no suma porcentaje: hay que superarla
+para aprobar el proyecto y se valora de forma individual, as\'i que una
+defensa que muestre que un integrante no entiende lo que ha entregado puede
+dejarlo por debajo del resto de su equipo o directamente suspenso, con
+independencia del desglose anterior.
+
+\end{document}
