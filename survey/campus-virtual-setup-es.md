@@ -37,7 +37,7 @@ de texto corto. Cinco numéricas se analizan mucho mejor.
 
 **6. Consentimiento.** Los dos párrafos iniciales van como elemento
 **«Etiqueta»** al principio. No los quites: el uso de las respuestas en una
-publicación necesita que estén informados y que puedan negarse (pregunta 47).
+publicación necesita que estén informados y que puedan negarse (pregunta 48).
 Con n pequeña y respuestas que se publicarán sin agregar, revisa las abiertas
 antes de citarlas: una frase puede identificar a su autor aunque no lleve
 nombre.
@@ -63,12 +63,17 @@ fin, marca la casilla de la última pregunta.
 
 ## A. Contexto
 
-**1.** ¿De cuántas personas era tu equipo? · *[opción múltiple, una respuesta]*
+**1.** ¿De cuántas personas era tu equipo? · *[opción múltiple, una respuesta, no obligatoria]*
 
 ```
 Dos
 Tres
+Cuatro
 ```
+
+> Añade como texto de ayuda: «Si tu equipo era el único de su tamaño,
+> responder aquí permite identificarlo (aunque no a ti dentro de él). Puedes
+> dejarlo en blanco.»
 
 **2.** El sistema que modelasteis lo elegisteis: · *[opción múltiple, una respuesta]*
 
@@ -252,7 +257,7 @@ Otros
 
 **33.** Si no lo usaste, ¿por qué? · *[texto corto, no obligatoria]*
 
-> En Moodle puedes poner las preguntas 34–38 dentro de una **dependencia** de
+> En Moodle puedes poner las preguntas 34–39 dentro de una **dependencia** de
 > la 32 («mostrar solo si la respuesta es distinta de *No lo instalé*»), para
 > que quien no lo usó no tenga que pasar por ellas.
 
@@ -260,13 +265,15 @@ Otros
 
 **35.** Los diagnósticos que devuelve sobre la especificación me resultaron útiles: · *[valorada, 1 (nada) – 5 (mucho)]*
 
-**36.** Con el MCP, el asistente generaba código Maude más correcto que sin él: · *[valorada, 1 (nada) – 5 (mucho), más `0/No lo puedo comparar`]*
+**36.** Que el asistente pudiera ejecutar la especificación a través del MCP (reducciones, búsquedas) me resultó útil: · *[valorada, 1 (nada) – 5 (mucho)]*
 
-**37.** ¿En qué situaciones te resultó más útil el MCP? · *[texto largo]*
+**37.** Con el MCP, el asistente generaba código Maude más correcto que sin él: · *[valorada, 1 (nada) – 5 (mucho), más `0/No lo puedo comparar`]*
 
-**38.** ¿Qué le falta al MCP o qué le cambiarías? · *[texto largo]*
+**38.** ¿En qué situaciones te resultó más útil el MCP? · *[texto largo]*
 
-**39.** Del código Maude que te generó un asistente, ¿cuánto tuviste que rehacer o corregir? · *[opción múltiple valorada]*
+**39.** ¿Qué le falta al MCP o qué le cambiarías? · *[texto largo]*
+
+**40.** Del código Maude que te generó un asistente, ¿cuánto tuviste que rehacer o corregir? · *[opción múltiple valorada]*
 
 ```
 0/No usé asistentes para el código
@@ -276,7 +283,7 @@ Otros
 4/Casi todo
 ```
 
-**40.** ¿Entendías todo el código que entregasteis, viniera de donde viniera? · *[opción múltiple valorada]*
+**41.** ¿Entendías todo el código que entregasteis, viniera de donde viniera? · *[opción múltiple valorada]*
 
 ```
 4/Sí, todo
@@ -285,7 +292,7 @@ Otros
 1/Bastantes partes no las entendía
 ```
 
-**41.** ¿Probasteis a pedirle a un asistente el proyecto entero a partir del enunciado, a ver qué salía? · *[opción múltiple, una respuesta]*
+**42.** ¿Probasteis a pedirle a un asistente el proyecto entero a partir del enunciado, a ver qué salía? · *[opción múltiple, una respuesta]*
 
 ```
 No lo probamos
@@ -294,7 +301,7 @@ Sí, y dio algo que hubo que rehacer casi entero
 Sí, y funcionó razonablemente bien
 ```
 
-**42.** Comparado con las prácticas cortas del principio de curso, resolver este proyecto con ayuda de una IA me pareció: · *[opción múltiple valorada]*
+**43.** Comparado con las prácticas cortas del principio de curso, resolver este proyecto con ayuda de una IA me pareció: · *[opción múltiple valorada]*
 
 ```
 1/Mucho más fácil
@@ -304,30 +311,30 @@ Sí, y funcionó razonablemente bien
 5/Mucho más difícil
 ```
 
-**43.** ¿Qué es lo que peor hacen los asistentes en Maude? · *[texto largo]*
+**44.** ¿Qué es lo que peor hacen los asistentes en Maude? · *[texto largo]*
 
 ---
 
 ## G. Para terminar
 
-**44.** ¿Qué es lo mejor del proyecto? ¿Qué mantendrías? · *[texto largo]*
+**45.** ¿Qué es lo mejor del proyecto? ¿Qué mantendrías? · *[texto largo]*
 
-**45.** ¿Qué es lo peor? ¿Qué cambiarías? · *[texto largo]*
+**46.** ¿Qué es lo peor? ¿Qué cambiarías? · *[texto largo]*
 
-**46.** ¿Qué consejo le darías a alguien que empiece este proyecto el curso que viene? · *[texto largo]*
+**47.** ¿Qué consejo le darías a alguien que empiece este proyecto el curso que viene? · *[texto largo]*
 
-**47.** · *[opción múltiple, una respuesta]*
+**48.** · *[opción múltiple, una respuesta]*
 
 ```
 No quiero que mis respuestas se usen en una publicación sobre el diseño de la asignatura.
 Sí autorizo ese uso.
 ```
 
-> En el PDF esta última es una casilla suelta (pregunta 46). En Moodle conviene
+> En el PDF esta última es una casilla suelta (pregunta 47). En Moodle conviene
 > convertirla en dos opciones explícitas y **obligatoria**, para que quien no
-> autorice quede registrado sin ambigüedad. Por eso aquí hay 47 preguntas y en
-> el PDF 46; el resto de la numeración coincide salvo por la pregunta 33, que
-> en el PDF va incrustada en la 32 (el «si no lo usaste, indica por qué»).
+> autorice quede registrado sin ambigüedad. Por eso aquí hay 48 preguntas y en
+> el PDF 47. Hasta la 32 la numeración coincide; a partir de ahí la de Moodle
+> va una por delante, porque la pregunta 33 en el PDF va incrustada en la 32 (el «si no lo usaste, indica por qué»).
 
 ---
 
@@ -345,8 +352,8 @@ que se citan abajo son las suyas.
 | El rediseño aumenta la implicación | 15–22, 23, 28 |
 | La autenticidad del sistema importa | 3, 26 |
 | Cómo se usan los asistentes cuando se permiten | 29, 30, 31 |
-| El proyecto resiste el atajo con IA | 27, 39–43 |
-| El MCP aporta algo sobre un asistente genérico | 32, 34–38 |
+| El proyecto resiste el atajo con IA | 27, 40–44 |
+| El MCP aporta algo sobre un asistente genérico | 32, 34–39 |
 
 El bloque C está adaptado de los ítems de aprendizaje profundo del NSSE y el
 bloque D de la escala *Engagement vs. Disaffection with Learning*; son las dos

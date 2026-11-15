@@ -6,7 +6,8 @@ Materials for the project-based assessment described in
 > Making the Declarative Decisions the Assignment.* TFPIE 2027.
 
 In *Auditoría, Calidad y Fiabilidad Informáticas* (master's level,
-Universidad Complutense de Madrid), teams of two or three students choose a
+Universidad Complutense de Madrid), teams of two or three students (four,
+for Raft-style consensus) choose a
 real architecture, specify it in Maude, state and verify properties of it,
 mutate their own specification to break those properties, and defend the
 result individually. Nothing is given: designing the algebra and deciding what

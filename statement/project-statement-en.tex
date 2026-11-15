@@ -20,7 +20,9 @@ Final Project: Specification and Verification of a Real Architecture in Maude\hf
 \end{center}
 
 \noindent
-This project is carried out in groups of two or three students.
+This project is carried out in groups of two or three students; the
+Raft-style consensus system also admits a group of four, with the additional
+requirements given under that system.
 %
 Each group will choose a real architecture, protocol, or application
 (\emph{not} a toy example invented for the occasion), study it in depth, and
@@ -35,8 +37,9 @@ propose a different one (justifying its interest, subject to the
 instructor's prior approval).
 
 Each system is marked with the team size its scope is meant for:
-\textbf{[2]} fits a pair, \textbf{[3]} calls for a trio, and
-\textbf{[2--3]} works with either. The list runs from the most to the least
+\textbf{[2]} fits a pair, \textbf{[3]} calls for a trio,
+\textbf{[2--3]} works with either, and \textbf{[3--4]} also admits a
+group of four. The list runs from the most to the least
 demanding. This is a recommendation, not a restriction, and
 \textbf{choosing a system marked \textbf{[2]} does not cap your grade}:
 what is assessed is the depth of the development relative to the size of
@@ -46,7 +49,21 @@ the team.
 \item
 \textbf{Simplified Raft-style consensus} (leader election plus log
 replication): there is at most one leader per term; committed entries are
-not lost when a minority of nodes fail. \textbf{[3]}
+not lost when a minority of nodes fail. \textbf{[3--4]}
+
+\emph{If a group of four takes it}, in addition:
+(a)~the model must allow a node to crash and recover at any time, keeping
+only its persistent state (current term, vote cast, and log), and the
+network to lose messages;
+(b)~\emph{Log Matching} (if two logs contain an entry with the same index
+and term, they are identical up to that index) and \emph{Leader
+Completeness} (every leader contains all entries committed in earlier
+terms) must also be stated and verified;
+(c)~one of the mutations must remove the election restriction (a node
+votes only for candidates whose log is at least as up to date as its own),
+showing with Maude a counterexample in which a committed entry is lost; and
+(d)~the report must justify the bounds used (number of nodes, of terms, and
+log length) and state how many states each check explores.
 
 \item
 \textbf{Two-phase commit (2PC)}: all participants decide the same outcome
