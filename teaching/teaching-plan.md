@@ -6,7 +6,8 @@ assessment. Dates are those of that year.
 
 ## Context
 
-- 16 students, in teams of two or three: six to eight teams.
+- 16 students in six teams: one of four on Raft-style consensus, two trios,
+  and three pairs (see [`catalogue/candidate-systems.md`](../catalogue/candidate-systems.md)).
 - Eight weeks, two 100-minute sessions a week: a lecture on Monday and a
   laboratory session on Thursday.
 - Three short practicals, one per Thursday in the first three weeks. They are
@@ -51,17 +52,17 @@ read the reports and prepare each team's questions.
 
 ## Defense logistics
 
-At 20 minutes for a pair and 25 for a trio, the planned seven teams (two
-trios and five pairs) need 150 minutes, which does not fit in one 100-minute session. Split
-across the two sessions of the last week:
+A defense takes 20 minutes for a pair, 25 for a trio, and about 30 for the
+team of four, 140 minutes in all. That does not fit in one 100-minute
+session and fits comfortably in the two sessions of the last week:
 
-| Session | Teams | Time | |
-|---|---|---|---|
-| Monday 14 Dec | 3 pairs + 1 trio | 85 min | 15 min margin |
-| Thursday 17 Dec | 2 pairs + 1 trio | 65 min | 35 min left for the survey |
-| | | **150 min** | |
+| Session | Teams | Time |
+|---|---|---|
+| Monday 14 Dec | Raft (4), load balancer (2), rate limiter (2) | 70 min |
+| Thursday 17 Dec | Producer-consumer (3), leader election (3), circuit breaker (2) | 70 min |
 
-With eight pairs instead, the total is 160 minutes and still fits.
+The end of the second session is left for the survey. No system was chosen
+twice, so each live modification is specific to a single team.
 
 While one team defends, the rest work on the course's final presentation,
 which is what that week is for. It is better to hold the defense away from

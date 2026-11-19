@@ -1,7 +1,7 @@
 # The defense
 
 Each team defends its project in person: 20 minutes for a pair, 25 for a
-trio. Each member is questioned about their own part of the work and is asked
+trio, and about 30 for the team of four. Each member is questioned about their own part of the work and is asked
 for one small modification to the team's specification. Students know a
 modification will be asked for, but not which one.
 

@@ -19,7 +19,9 @@ Proyecto final: especificaci\'on y verificaci\'on de una arquitectura real en Ma
 \end{center}
 
 \noindent
-Este proyecto se realiza en grupos de dos o tres estudiantes.
+Este proyecto se realiza en grupos de dos o tres estudiantes; el consenso
+tipo Raft admite también un grupo de cuatro, con los requisitos adicionales
+que se indican en ese sistema.
 %
 Cada grupo elegir\'a una arquitectura, protocolo o
 aplicaci\'on \emph{real} (no un ejemplo de juguete inventado para la ocasi\'on),
@@ -36,8 +38,11 @@ previa del profesor).
 
 Junto a cada sistema se indica el tama\~no de equipo para el que est\'a
 pensado su alcance: \textbf{[2]} encaja bien en una pareja, \textbf{[3]}
-pide un grupo de tres y \textbf{[2--3]} funciona en ambos casos. La lista
-va de m\'as a menos exigente. Es una recomendaci\'on, no una restricci\'on,
+pide un grupo de tres, \textbf{[2--3]} funciona en ambos casos y
+\textbf{[3--4]} admite también un grupo de cuatro. Un grupo que elija un
+sistema pensado para un equipo m\'as peque\~no tendr\'a requisitos
+adicionales, como los que se indican en Raft y en productor-consumidor. La
+lista va de m\'as a menos exigente. Es una recomendaci\'on, no una restricci\'on,
 y \textbf{elegir un sistema marcado \textbf{[2]} no limita la nota}: lo que
 se valora es la profundidad del desarrollo en relaci\'on con el tama\~no
 del equipo.
@@ -46,7 +51,23 @@ del equipo.
 \item
 \textbf{Consenso simplificado tipo Raft} (elecci\'on de l\'ider m\'as
 replicaci\'on de un \emph{log}): como mucho hay un l\'ider por t\'ermino; las
-entradas confirmadas no se pierden ante el fallo de una minor\'ia de nodos \textbf{[3]}.
+entradas confirmadas no se pierden ante el fallo de una minor\'ia de nodos \textbf{[3--4]}.
+
+\emph{Si lo hace un grupo de cuatro}, adem\'as:
+(a)~el modelo debe permitir que un nodo caiga y se recupere en cualquier
+momento conservando solo su estado persistente (t\'ermino actual, voto
+emitido y \emph{log}), y que la red pierda mensajes;
+(b)~hay que formular y verificar tambi\'en \emph{Log Matching} (si dos
+\emph{logs} tienen una entrada con el mismo \'indice y t\'ermino, coinciden
+hasta ese \'indice) y \emph{Leader Completeness} (todo l\'ider contiene todas
+las entradas confirmadas en t\'erminos anteriores);
+(c)~una de las mutaciones debe eliminar la restricci\'on de elecci\'on (un
+nodo solo vota a candidatos cuyo \emph{log} est\'a al menos tan actualizado
+como el suyo), mostrando con Maude un contraejemplo en el que se pierde una
+entrada confirmada; y
+(d)~la memoria debe justificar las cotas usadas (n\'umero de nodos, de
+t\'erminos y longitud del \emph{log}) e indicar cu\'antos estados explora
+cada comprobaci\'on.
 
 \item
 \textbf{Confirmaci\'on en dos fases} (\emph{two-phase commit}, 2PC): todos los
@@ -85,6 +106,24 @@ propaga eventualmente a todos los nodos vivos; convergencia del estado \textbf{[
 \textbf{Productor-consumidor con cola acotada}: ausencia de p\'erdida de
 mensajes, ausencia de desbordamiento del \emph{buffer}, ausencia de inanici\'on
 del consumidor \textbf{[2]}.
+
+\emph{Si lo hace un grupo de tres}, adem\'as:
+(a)~el modelo debe tener al menos dos productores y dos consumidores, y
+representar expl\'icitamente el mecanismo de sincronizaci\'on (un monitor con
+variables de condici\'on, o sem\'aforos), con procesos que se bloquean y son
+despertados, en lugar de limitarse a guardas en las reglas;
+(b)~hay que formular y verificar tambi\'en la ausencia de interbloqueo, el
+orden FIFO de los mensajes de cada productor y la ausencia de inanici\'on de
+cualquier proceso, esta \'ultima en LTL bajo una hip\'otesis de equidad
+(\emph{fairness}) expresada en la propia f\'ormula y justificada en la
+memoria;
+(c)~una de las mutaciones debe reproducir el \emph{despertar perdido}: un
+monitor con una \'unica variable de condici\'on que despierta a un solo
+proceso en lugar de a todos, mostrando con Maude un estado alcanzable en el
+que todos los procesos esperan; y
+(d)~la memoria debe justificar las cotas usadas (n\'umero de procesos y
+tama\~no del \emph{buffer}) e indicar cu\'antos estados explora cada
+comprobaci\'on.
 
 \item
 \textbf{Limitador de peticiones} (\emph{rate limiter}, con \emph{token bucket}
